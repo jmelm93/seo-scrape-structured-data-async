@@ -3,7 +3,7 @@
 #### First Test
 1. Clone repo
 2. Make .sh into execuitable `chmod +x start.sh`
-3. Run `./start.sh`
+3. Run `./run.sh`
 
 **Above will only work on unix-like os. Will have to install dependencies manually and run with `python main.py` if on Windows.
 
@@ -13,4 +13,4 @@
    2. Sync runs asyncio - which can use your os to make a lot of requests very very quickly
    3. This is to protect website servers, as too many concurrent requests can hurt websites
 2. Update the `config.yaml` 
-3. Run `./start.sh`
+3. Run `./run.sh`
