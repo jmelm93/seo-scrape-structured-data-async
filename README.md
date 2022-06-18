@@ -3,9 +3,9 @@
 #### First Test
 1. Clone repo
 2. Make .sh into execuitable `chmod +x start.sh`
-3. Run `./start.sh`\
+3. Run `./start.sh`
 
-**Above will only work on unix os. Will have to install dependencies manually and run with `python main.py` if on Windows.
+**Above will only work on unix-like os. Will have to install dependencies manually and run with `python main.py` if on Windows.
 
 #### Custom Job (*Assuming Repo Already Cloned / `start.sh` > Exe)
 1. Update `input.csv` with desired client / competitors
