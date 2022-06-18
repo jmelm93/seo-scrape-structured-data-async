@@ -206,6 +206,10 @@ def main():
         final_full_dataset
     )
     
+    final_opportunities = final_opportunities[ # filter out if "structured_data_types" is "No Markup Type Found"
+        final_opportunities["structured_data_types"] != "Markup Type Not Found"
+    ]
+        
     ### WRITING TO OUT ###
     final_full_dataset = final_full_dataset[
         ["Domain", "URL", "Page Type", "Site Type", "structured_data_types", "markup_type"]
