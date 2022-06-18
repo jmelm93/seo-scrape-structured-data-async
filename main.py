@@ -48,16 +48,18 @@ async def worker(url, session): ## SCRAPER
         html = BeautifulSoup(await response.text(), "html.parser")
         json_script_elements = None
         
+        list_of_json = []
+        
         try: # check if page has json script tag
-            json_script_elements = html.find_all('script', type='application/ld+json')
-            list_of_json = []
+            json_script_elements = html.find_all('script', type='application/ld+json')    
             for script in json_script_elements:
-                list_of_json.append(json.loads(script.text.replace("&quot;", "\"")))
+                list_of_json.append(json.loads(script.text.replace("&quot;", "\""), strict=False))
                 
         except AttributeError as e:
-            print(f"AttributeError - {url} - {e}")
+            logging.info(f"AttributeError - {url} - {e}")
                 
         return [url, html, list_of_json]
+
 
 
 async def scrape_and_extract(urlList): ## CALL SCRAPER WITH URL LIST
