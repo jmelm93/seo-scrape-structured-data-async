@@ -35,7 +35,7 @@ syntaxes = ["json-ld", "microdata", "opengraph", "rdfa"]
 
 ###### ********* ASYNC SCRAPER ********* ######
 
-async def worker(url, session):
+async def worker(url, session): ## SCRAPER
     headers = {
         "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
         "accept-language": "en-GB,en-US;q=0.9,en;q=0.8",
@@ -60,6 +60,16 @@ async def worker(url, session):
         return [url, html, list_of_json]
 
 
+async def scrape_and_extract(urlList): ## CALL SCRAPER WITH URL LIST
+
+    async with aiohttp.ClientSession() as session:
+        response = await asyncio.gather(  # gather all responses in a list
+            *[worker(url, session) for url in urlList]  # get content for each url
+        )
+
+        return response
+
+    
 
 ###### ********* EXTRACT METADATA ********* ######
 
@@ -147,19 +157,6 @@ def get_schema_client_vs_competitive_comparisons(schema_df):
     output = matching[matching["Opportunity"] == True]  # filter to only opportunities
 
     return output
-
-
-
-###### ********* ASYNC SCRAPER ********* ######
-
-async def scrape_and_extract(urlList):
-
-    async with aiohttp.ClientSession() as session:
-        response = await asyncio.gather(  # gather all responses in a list
-            *[worker(url, session) for url in urlList]  # get content for each url
-        )
-
-        return response
 
 
 
